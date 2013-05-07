@@ -12,7 +12,7 @@
     ],
     "require": {
         "silex/silex": "1.0.*@dev",
-        "symfony/serializer": "2.3.*@dev"
+        "symfony/serializer": ">=2.2,<2.4-dev@dev"
     },
     "require-dev":{
         "symfony/browser-kit": ">=2.3,<2.4-dev@dev"
