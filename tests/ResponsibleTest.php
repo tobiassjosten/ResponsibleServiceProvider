@@ -57,4 +57,30 @@ class ResponsibleTest extends WebTestCase
             $response->getContent()
         );
     }
+
+    public function testArrayResponseWithEmpty()
+    {
+        $client = $this->createClient();
+        $client->request('GET', '/foo', array(), array(), array(
+            'HTTP_ACCEPT' => '',
+        ));
+
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertEquals('["bar"]', $response->getContent());
+    }
+
+    public function testArrayResponseWithInvalid()
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/foo', array(), array(), array(
+            'HTTP_ACCEPT' => 'text/html',
+        ));
+
+        $response = $client->getResponse();
+
+        $this->assertFalse($response->isOk());
+        $this->assertEquals(406, $response->getStatusCode());
+    }
 }

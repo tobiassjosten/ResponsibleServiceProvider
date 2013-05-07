@@ -37,7 +37,10 @@ class ResponsibleListener implements EventSubscriberInterface
         }
 
         $supported = array('json', 'xml');
-        foreach ($request->getAcceptableContentTypes() as $type) {
+        $default = reset($supported);
+        $accepted = $request->getAcceptableContentTypes() ?: array($request->getMimeType($default));
+
+        foreach ($accepted as $type) {
             if (in_array($format = $request->getFormat($type), $supported)) {
                 $event->setResponse(new Response(
                     $this->encoder->encode($result, $format),
@@ -45,9 +48,27 @@ class ResponsibleListener implements EventSubscriberInterface
                     array('Content-Type' => $type)
                 ));
 
-                break;
+                return;
             }
         }
+
+        // HTTP/1.1 recommends returning some data over giving a 406 error,
+        // even if that data is not supported by the Accept header.
+        if ('HTTP/1.1' === $request->get('SERVER_PROTOCOL')) {
+            $event->setResponse(new Response(
+                $this->encoder->encode($result, $default),
+                200,
+                array('Content-Type' => $request->getMimeType($default))
+            ));
+
+            return;
+        }
+
+        $event->setResponse(new Response(
+            'Unsupported media type',
+            406,
+            array('Content-Type' => 'text/plain')
+        ));
     }
 
     public static function getSubscribedEvents()
