@@ -1,0 +1,24 @@
+{
+    "name": "tobiassjosten/responsible-service-provider",
+    "description": "A Silex ServiceProvider for automagic response formatting.",
+    "keywords": ["silex", "service-provider", "rad"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tobias Sjösten",
+            "email": "tobias@tobiassjosten.net",
+            "homepage": "http://vvv.tobiassjosten.net/"
+        }
+    ],
+    "require": {
+        "silex/silex": "1.0.*@dev",
+        "symfony/serializer": ">=2.3,<2.4-dev@dev"
+    },
+    "require-dev":{
+        "symfony/browser-kit": ">=2.3,<2.4-dev@dev"
+    },
+    "autoload": {
+        "psr-0": { "Tobiassjosten\\Silex": "src" }
+    },
+    "minimum-stability": "dev"
+}
