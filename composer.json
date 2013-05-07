@@ -1,7 +1,7 @@
 {
     "name": "tobiassjosten/responsible-service-provider",
     "description": "A Silex ServiceProvider for automagic response formatting.",
-    "keywords": ["silex", "service-provider", "rad"],
+    "keywords": ["silex", "service-provider"],
     "license": "MIT",
     "authors": [
         {
