@@ -36,13 +36,13 @@ class ResponsibleListener implements EventSubscriberInterface
             return;
         }
 
-        $supported = ['json', 'xml'];
+        $supported = array('json', 'xml');
         foreach ($request->getAcceptableContentTypes() as $type) {
             if (in_array($format = $request->getFormat($type), $supported)) {
                 $event->setResponse(new Response(
                     $this->encoder->encode($result, $format),
                     200,
-                    ['Content-Type' => $type]
+                    array('Content-Type' => $type)
                 ));
 
                 break;
@@ -52,6 +52,6 @@ class ResponsibleListener implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return [KernelEvents::VIEW => ['onKernelView', -10]];
+        return array(KernelEvents::VIEW => array('onKernelView', -10));
     }
 }
