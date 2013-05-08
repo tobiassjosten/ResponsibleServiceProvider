@@ -22,13 +22,12 @@ class ResponsibleServiceProvider implements ServiceProviderInterface
         if (empty($app['serializer'])) {
             $app->register(new SerializerServiceProvider());
         }
-
-        $app['dispatcher']->addSubscriber(
-            new ResponsibleListener($app['serializer'])
-        );
     }
 
     public function boot(Application $app)
     {
+        $app['dispatcher']->addSubscriber(
+            new ResponsibleListener($app['serializer'])
+        );
     }
 }
