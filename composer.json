@@ -12,13 +12,12 @@
     ],
     "require": {
         "silex/silex": "1.0.*@dev",
-        "symfony/serializer": ">=2.2,<2.4-dev@dev"
+        "symfony/serializer": ">=2.1,<2.4-dev"
     },
     "require-dev":{
-        "symfony/browser-kit": ">=2.3,<2.4-dev@dev"
+        "symfony/browser-kit": ">=2.1,<2.4-dev"
     },
     "autoload": {
         "psr-0": { "Tobiassjosten\\Silex": "src" }
-    },
-    "minimum-stability": "dev"
+    }
 }
