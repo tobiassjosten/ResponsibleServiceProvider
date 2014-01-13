@@ -11,11 +11,11 @@
         }
     ],
     "require": {
-        "silex/silex": "1.0.*@dev",
-        "symfony/serializer": ">=2.1,<2.4-dev"
+        "silex/silex": "~1.0",
+        "symfony/serializer": ">=2.1,<2.5-dev"
     },
     "require-dev":{
-        "symfony/browser-kit": ">=2.1,<2.4-dev"
+        "symfony/browser-kit": ">=2.1,<2.5-dev"
     },
     "autoload": {
         "psr-0": { "Tobiassjosten\\Silex": "src" }
