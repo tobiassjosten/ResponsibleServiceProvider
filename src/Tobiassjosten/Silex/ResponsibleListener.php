@@ -42,7 +42,7 @@ class ResponsibleListener implements EventSubscriberInterface
 
         // If Accept is blank, then */* is the only option available.
         // Change it to the current Content-Type to attempt returning the format received
-        if (count($accepted) === 1 && $accepted[0] == '*/*') {
+        if (count($accepted) === 1 && $accepted[0] === '*/*') {
             $accepted[0] = $request->headers->get('Content-Type');
         }
 
