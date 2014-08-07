@@ -60,7 +60,7 @@ class ResponsibleListener implements EventSubscriberInterface
 
         // HTTP/1.1 recommends returning some data over giving a 406 error,
         // even if that data is not supported by the Accept header.
-        if ('HTTP/1.1' === $request->get('SERVER_PROTOCOL')) {
+        if ('HTTP/1.1' === $request->server->get('SERVER_PROTOCOL')) {
             $event->setResponse(new Response(
                 $this->encoder->encode($result, $default),
                 200,
