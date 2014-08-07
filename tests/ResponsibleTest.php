@@ -71,10 +71,11 @@ class ResponsibleTest extends WebTestCase
         $this->assertEquals('["bar"]', $response->getContent());
     }
 
-    public function testArrayResponseWithInvalid()
+    public function testArrayResponseWithInvalidHTTP10()
     {
         $client = $this->createClient();
         $crawler = $client->request('GET', '/foo', array(), array(), array(
+            'SERVER_PROTOCOL' => 'HTTP/1.0',
             'HTTP_ACCEPT' => 'text/html',
         ));
 
@@ -82,5 +83,19 @@ class ResponsibleTest extends WebTestCase
 
         $this->assertFalse($response->isOk());
         $this->assertEquals(406, $response->getStatusCode());
+    }
+
+    public function testArrayResponseWithInvalidHTTP11()
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/foo', array(), array(), array(
+            'SERVER_PROTOCOL' => 'HTTP/1.1',
+            'HTTP_ACCEPT' => 'text/html',
+        ));
+
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertEquals(200, $response->getStatusCode());
     }
 }
