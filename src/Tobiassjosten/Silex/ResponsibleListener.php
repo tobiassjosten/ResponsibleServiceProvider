@@ -70,7 +70,7 @@ class ResponsibleListener implements EventSubscriberInterface
         }
 
         $event->setResponse(new Response(
-            'Unsupported media type',
+            'Not Acceptable',
             406,
             array('Content-Type' => 'text/plain')
         ));
