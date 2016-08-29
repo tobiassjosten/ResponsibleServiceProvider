@@ -29,7 +29,6 @@ class ResponsibleListener implements EventSubscriberInterface
     public function onKernelView(GetResponseForControllerResultEvent $event)
     {
         $request = $event->getRequest();
-        $response = $event->getResponse();
         $result = $event->getControllerResult();
 
         if (!is_array($result)) {
