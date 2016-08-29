@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "silex/silex": "~1.0",
+        "silex/silex": "~2.0",
         "symfony/serializer": "~2.1"
     },
     "require-dev":{
