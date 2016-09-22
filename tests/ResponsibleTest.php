@@ -20,7 +20,7 @@ class ResponsibleTest extends WebTestCase
         $app = new Application();
         $app->register(new ResponsibleServiceProvider());
         $app['debug'] = true;
-        $app['exception_handler']->disable();
+        unset($app['exception_handler']);
 
         $app->get('/foo', function () {
             return array('bar');

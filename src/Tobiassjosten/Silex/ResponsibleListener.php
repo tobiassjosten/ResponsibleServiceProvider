@@ -29,7 +29,6 @@ class ResponsibleListener implements EventSubscriberInterface
     public function onKernelView(GetResponseForControllerResultEvent $event)
     {
         $request = $event->getRequest();
-        $response = $event->getResponse();
         $result = $event->getControllerResult();
 
         if (!is_array($result)) {
@@ -71,7 +70,7 @@ class ResponsibleListener implements EventSubscriberInterface
         }
 
         $event->setResponse(new Response(
-            'Unsupported media type',
+            'Not Acceptable',
             406,
             array('Content-Type' => 'text/plain')
         ));

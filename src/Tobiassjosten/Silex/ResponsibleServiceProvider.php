@@ -11,22 +11,24 @@
 
 namespace Tobiassjosten\Silex;
 
-use Silex\Application;
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
+use Silex\Api\EventListenerProviderInterface;
 use Silex\Provider\SerializerServiceProvider;
-use Silex\ServiceProviderInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class ResponsibleServiceProvider implements ServiceProviderInterface
+class ResponsibleServiceProvider implements ServiceProviderInterface, EventListenerProviderInterface
 {
-    public function register(Application $app)
+    public function register(Container $app)
     {
         if (empty($app['serializer'])) {
             $app->register(new SerializerServiceProvider());
         }
     }
 
-    public function boot(Application $app)
+    public function subscribe(Container $app, EventDispatcherInterface $dispatcher)
     {
-        $app['dispatcher']->addSubscriber(
+        $dispatcher->addSubscriber(
             new ResponsibleListener($app['serializer'])
         );
     }
