@@ -8,20 +8,15 @@ A [Silex](http://silex.sensiolabs.org) ServiceProvider for automagic response fo
 
 1) Add the package to you composer.json:
 
-    "require": {
-        "tobiassjosten/responsible-service-provider": "dev-master"
-    }
+    $ composer require tobiassjosten/responsible-service-provider
 
-2) Run `composer install`.
+2) Register it in your application.
 
-3) Register it in your application.
-
-    use Tobiassjosten\Silex\ResponsibleServiceProvider;
-    $app->register(new ResponsibleServiceProvider());
+    $app->register(new \Tobiassjosten\Silex\ResponsibleServiceProvider());
 
 ## Usage
 
-Once enabled, just have your controllers return your data in array format. `ResponsibleServiceProvider` will do the rest.
+Once enabled, just have your controllers return data as an array. `ResponsibleServiceProvider` will do the rest.
 
     $app->get('/foo', function () {
         return ['Bar'];
