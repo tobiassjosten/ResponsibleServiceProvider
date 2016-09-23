@@ -10,6 +10,8 @@ A [Silex](http://silex.sensiolabs.org) ServiceProvider for automagic response fo
 
     $ composer require tobiassjosten/responsible-service-provider
 
+(For Silex 1, add the *0.0.1* version to the end of that commend.)
+
 2) Register it in your application.
 
     $app->register(new \Tobiassjosten\Silex\ResponsibleServiceProvider());
